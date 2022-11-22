@@ -15,7 +15,6 @@
 		D1BE30AA29229F3000397DFF /* CoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BE30A929229F3000397DFF /* CoreData.swift */; };
 		D1BE30AD29229FD500397DFF /* Usuarios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D1BE30AB29229FD500397DFF /* Usuarios.xcdatamodeld */; };
 		D1BE30B12922A27600397DFF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1BE30B02922A27600397DFF /* Main.storyboard */; };
-		D1BE30D22922A96C00397DFF /* Percistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1BE30D12922A96C00397DFF /* Percistence.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,7 +27,6 @@
 		D1BE30A929229F3000397DFF /* CoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreData.swift; sourceTree = "<group>"; };
 		D1BE30AC29229FD500397DFF /* Usuarios.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Usuarios.xcdatamodel; sourceTree = "<group>"; };
 		D1BE30B02922A27600397DFF /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		D1BE30D12922A96C00397DFF /* Percistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Percistence.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,7 +63,6 @@
 				D1BE309D29229F1100397DFF /* ContentView.swift */,
 				D1BE30A929229F3000397DFF /* CoreData.swift */,
 				D1BE30B02922A27600397DFF /* Main.storyboard */,
-				D1BE30D12922A96C00397DFF /* Percistence.swift */,
 				D18697E6292546BE00DC0AB1 /* CoreDataManager.swift */,
 				D1BE30AB29229FD500397DFF /* Usuarios.xcdatamodeld */,
 				D1BE309F29229F1200397DFF /* Assets.xcassets */,
@@ -156,7 +153,6 @@
 				D18697E7292546BE00DC0AB1 /* CoreDataManager.swift in Sources */,
 				D1BE30AD29229FD500397DFF /* Usuarios.xcdatamodeld in Sources */,
 				D1BE309E29229F1100397DFF /* ContentView.swift in Sources */,
-				D1BE30D22922A96C00397DFF /* Percistence.swift in Sources */,
 				D1BE30AA29229F3000397DFF /* CoreData.swift in Sources */,
 				D1BE309C29229F1100397DFF /* ExamenIngWebApp.swift in Sources */,
 			);

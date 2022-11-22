@@ -52,7 +52,7 @@ struct ContentView: View {
                         Text(user.activo ?? "")
                     }
                 }
-                onDelete(perform: {
+                .onDelete(perform: {
                     indexSet in
                     indexSet.forEach({index in
                         let usuario = usuarioArray[index]
@@ -61,7 +61,12 @@ struct ContentView: View {
                     })
                 })
             }
-        }
+            Spacer()
+        }.padding()
+            .onAppear(perform: {
+                mostrarUsuarios()
+                
+            })
     }
     
     func mostrarUsuarios(){
@@ -72,6 +77,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(coreDM:CoreDataManager())
     }
 }
