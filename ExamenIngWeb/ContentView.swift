@@ -9,16 +9,16 @@ import SwiftUI
 
 struct ContentView: View {
     let coreDM: CoreDataManager
-    @State var id = ""
+    @State var id : Int16
     @State var nombre = ""
     @State var apellido = ""
     @State var username = ""
-    @State var rolid = ""
-    @State var activo = ""
+    @State var rolid : Int16
+    @State var activo : Int16
     @State var usuarioArray = [Usuario]()
     var body: some View {
         VStack{
-            TextField("ID Usuario", text: $id)
+            TextField("ID Usuario", value: $id, format: .number)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             TextField("Nombre Usuario", text: $nombre)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -26,30 +26,30 @@ struct ContentView: View {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             TextField("Username Usuario", text: $username)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-            TextField("RolID Usuario", text: $rolid)
+            TextField("RolID Usuario", value: $id, format: .number)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-            TextField("Activo Usuario", text: $activo)
+            TextField("Activo Usuario", value: $id, format: .number)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             Button("Guardar"){
                 coreDM.guardarUsuario(id: id, nombre: nombre, apellido: apellido, username: username, activo: activo, rolid: rolid)
                 mostrarUsuarios()
-                id = ""
+                id = 0
                 nombre = ""
                 apellido = ""
                 username = ""
-                rolid = ""
-                activo = ""
+                rolid = 0
+                activo = 0
             }
             List{
                 ForEach(usuarioArray, id: \.self){
                     user in
                     VStack{
-                        Text(user.id ?? "")
+                        Text(user.id)
                         Text(user.nombre ?? "")
                         Text(user.apellido ?? "")
                         Text(user.username ?? "")
-                        Text(user.rolid ?? "")
-                        Text(user.activo ?? "")
+                        Text(user.rolid)
+                        Text(user.activo)
                     }
                 }
                 .onDelete(perform: {

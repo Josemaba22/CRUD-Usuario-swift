@@ -50,6 +50,27 @@ class CoreDataManager {
             return []
         }
     }
+    
+    func actualizarUsuario(usuario: Usuario){
+        let fetchRequest : NSFetchRequest<Usuario> = Usuario.fetchRequest()
+        let predicate = NSPredicate(format: "id = %@", usuario.id)
+        fetchRequest.predicate = predicate
+        
+        do{
+            let datos = try persistentContainer.viewContext.fetch(fetchRequest)
+            let u = datos.first
+            u?.nombre = usuario.nombre
+            u?.apellido = usuario.apellido
+            u?.activo = usuario.activo
+            u?.rolid = usuario.rolid
+            u?.username = usuario.username
+            try persistentContainer.viewContext.save()
+            print("usuario guardado")
+        }
+        catch{
+            print("Failed to save error en \(error)")
+        }
+    }
 
     func borrarUsuario(usuario: Usuario){
         persistentContainer.viewContext.delete(usuario)
