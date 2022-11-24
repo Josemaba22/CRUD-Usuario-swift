@@ -21,7 +21,7 @@ class CoreDataManager {
         })
     }
     
-    func guardarUsuario(id:Int16, nombre:String, apellido:String, username:String, activo:Int16, rolid:Int16){
+    func guardarUsuario(id:String, nombre:String, apellido:String, username:String, activo:String, rolid:String){
         let usuario = Usuario(context: persistentContainer.viewContext)
         usuario.nombre = nombre
         usuario.apellido = apellido
@@ -51,9 +51,25 @@ class CoreDataManager {
         }
     }
     
+    func leerUsuario(id: String) -> Usuario?{
+        let fetchRequest : NSFetchRequest<Usuario> = Usuario.fetchRequest()
+        let predicate = NSPredicate(format: "id = %@", id)
+        fetchRequest.predicate = predicate
+        
+        do{
+            let datos = try persistentContainer.viewContext.fetch(fetchRequest)
+            return datos.first
+            
+        }
+        catch{
+            print("Failed to save error en \(error)")
+        }
+        return nil
+    }
+    
     func actualizarUsuario(usuario: Usuario){
         let fetchRequest : NSFetchRequest<Usuario> = Usuario.fetchRequest()
-        let predicate = NSPredicate(format: "id = %@", usuario.id)
+        let predicate = NSPredicate(format: "id = %@", usuario.id ?? "")
         fetchRequest.predicate = predicate
         
         do{
@@ -71,6 +87,7 @@ class CoreDataManager {
             print("Failed to save error en \(error)")
         }
     }
+    
 
     func borrarUsuario(usuario: Usuario){
         persistentContainer.viewContext.delete(usuario)

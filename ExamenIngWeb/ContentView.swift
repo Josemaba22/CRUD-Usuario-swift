@@ -9,16 +9,17 @@ import SwiftUI
 
 struct ContentView: View {
     let coreDM: CoreDataManager
-    @State var id : Int16
+    @State var id = ""
     @State var nombre = ""
     @State var apellido = ""
     @State var username = ""
-    @State var rolid : Int16
-    @State var activo : Int16
+    @State var rolid = ""
+    @State var activo = ""
+    @State var seleccionado:Usuario?
     @State var usuarioArray = [Usuario]()
     var body: some View {
         VStack{
-            TextField("ID Usuario", value: $id, format: .number)
+            TextField("ID Usuario", text: $id)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             TextField("Nombre Usuario", text: $nombre)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -26,30 +27,51 @@ struct ContentView: View {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             TextField("Username Usuario", text: $username)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-            TextField("RolID Usuario", value: $id, format: .number)
+            TextField("RolID Usuario", text: $rolid)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-            TextField("Activo Usuario", value: $id, format: .number)
+            TextField("Activo Usuario", text: $activo)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             Button("Guardar"){
-                coreDM.guardarUsuario(id: id, nombre: nombre, apellido: apellido, username: username, activo: activo, rolid: rolid)
+                if(seleccionado != nil){
+                    seleccionado?.id = id
+                    seleccionado?.nombre = nombre
+                    seleccionado?.apellido = apellido
+                    seleccionado?.username = username
+                    seleccionado?.rolid = rolid
+                    seleccionado?.activo = activo
+                    coreDM.actualizarUsuario(usuario: seleccionado!)
+                } else{
+                    coreDM.guardarUsuario(id: id, nombre: nombre, apellido: apellido, username: username, activo: activo, rolid: rolid)
+                }
                 mostrarUsuarios()
-                id = 0
+                id = ""
                 nombre = ""
                 apellido = ""
                 username = ""
-                rolid = 0
-                activo = 0
+                rolid = ""
+                activo = ""
+                seleccionado = nil
             }
             List{
                 ForEach(usuarioArray, id: \.self){
                     user in
                     VStack{
-                        Text(user.id)
+                        Text(user.id ?? "")
                         Text(user.nombre ?? "")
                         Text(user.apellido ?? "")
                         Text(user.username ?? "")
-                        Text(user.rolid)
-                        Text(user.activo)
+                        Text(user.rolid ?? "")
+                        Text(user.activo ?? "")
+                    }
+                    .onTapGesture{
+                        seleccionado = user
+                        id = user.id ?? ""
+                        nombre = user.nombre ?? ""
+                        apellido = user.apellido ?? ""
+                        rolid = user.rolid ?? ""
+                        activo = user.activo ?? ""
+                        username = user.username ?? ""
+                        
                     }
                 }
                 .onDelete(perform: {
